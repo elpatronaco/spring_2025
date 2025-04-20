@@ -26,4 +26,7 @@ public class Product extends CatalogElement {
     @NotNull
     private Long categoryId;
 
+    @NotNull
+    private ProductStatus status = ProductStatus.ACTIVE;
+
 }

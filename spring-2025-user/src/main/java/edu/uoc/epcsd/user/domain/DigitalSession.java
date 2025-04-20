@@ -28,4 +28,6 @@ public class DigitalSession {
     @NotNull
     private Long userId;
 
+    @NotNull
+    private DigitalSessionStatus status = DigitalSessionStatus.ACTIVE;
 }
