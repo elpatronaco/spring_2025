@@ -11,7 +11,5 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Category extends CatalogElement {
-
     private Long parentId;
-
 }

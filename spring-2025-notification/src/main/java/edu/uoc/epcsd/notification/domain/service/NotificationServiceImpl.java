@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Log4j2
 @Service
@@ -25,6 +27,11 @@ public class NotificationServiceImpl implements NotificationService {
 
             // TODO: Use RestTemplate with the above userServiceUrl to query the User microservice in order to get the users that have an alert for the specified product (the date specified in the parameter may be the actual date: LocalDate.now()).
             //  Then simulate the email notification for the alerted users by logging a line with INFO level for each user saying "Sending an email to user " + the user fullName
+
+        LocalDate now = LocalDate.now();
+        String isoDate = now.format(DateTimeFormatter.ISO_DATE);
+
+        var body = new RestTemplate().getForEntity(userServiceUrl, GetUserResponse.class, isoDate);
 
     }
 }
