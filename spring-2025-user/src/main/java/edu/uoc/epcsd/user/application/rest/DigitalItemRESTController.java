@@ -27,8 +27,6 @@ public class DigitalItemRESTController {
 
     private final DigitalItemService digitalItemService;
 
-    private final DigitalSessionService digitalSessionService;
-
     @GetMapping("/allItems")
     @ResponseStatus(HttpStatus.OK)
     public List<DigitalItem> getAllDigitalItem() {
