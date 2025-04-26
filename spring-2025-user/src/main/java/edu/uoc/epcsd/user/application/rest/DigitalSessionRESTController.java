@@ -33,17 +33,23 @@ public class DigitalSessionRESTController {
 
         return digitalSessionService.findAllDigitalSession();
     }
-    
+
     // TODO: add the code for the missing system operations here: 
     // use the corresponding mapping HTTP request annotation with the parameter: "/{digitalSessionId}"
     // and create the method getDigitalSessionById(@PathVariable @NotNull Long digitalSessionId)
-    // which call the corresponding getDigitalSessionById method 
+    // which call the corresponding getDigitalSessionById method
+
+    @GetMapping("/{digitalSessionId}")
+    public DigitalSession getDigitalSessionById(@PathVariable @NotNull Long digitalSessionId) {
+        return digitalSessionService.getDigitalSessionById(digitalSessionId).map(item -> ResponseEntity.ok().body(item))
+                .orElse(ResponseEntity.notFound().build());
+    }
 
     // TODO: add the code for the missing system operations here: 
     // use the corresponding mapping HTTP request annotation with the parameter: "/digitalByUser"
     // and create the method findDigitalSessionByUser(@RequestParam @NotNull Long userId)
     // which call the corresponding findDigitalSessionByUser method 
-       
+
     // TODO: add the code for the missing system operations here: 
     // use the corresponding mapping HTTP request annotation with the parameter: "/createDigital"
     // and create the method createDigitalSession(@RequestBody @Valid CreateDigitalSessionRequest createDigitalSessionRequest)
