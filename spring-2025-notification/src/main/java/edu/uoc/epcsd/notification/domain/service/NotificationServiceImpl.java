@@ -33,7 +33,7 @@ public class NotificationServiceImpl implements NotificationService {
 
         // Check if the product is available
         try {
-            new RestTemplate().getForEntity(productServiceUrl, GetProductResponse.class, productMessage.getProductId()).getBody();
+            new RestTemplate().getForEntity(productServiceUrl, GetProductResponse.class, productMessage.getProductId());
         } catch (RestClientException e) {
             log.error("Error getting product details", e);
 
