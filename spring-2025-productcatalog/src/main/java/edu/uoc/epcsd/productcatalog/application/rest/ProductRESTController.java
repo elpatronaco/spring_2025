@@ -82,4 +82,17 @@ public class ProductRESTController {
     // and call the method removeProduct(@PathVariable @NotNull Long productId)
     // which call the corresponding deleteProduct method 
 
+    @DeleteMapping("/{productId}")
+    public ResponseEntity<Boolean> deleteProductById(@PathVariable @NotNull Long productId) {
+        log.trace("deleteProductById");
+
+        log.trace("Removing product with id {}", productId);
+        try {
+            productService.deleteProduct(productId);
+
+            return ResponseEntity.ok().body(true);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(false);
+        }
+    }
 }
