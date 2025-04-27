@@ -2,7 +2,6 @@ package edu.uoc.epcsd.productcatalog.application.rest;
 
 
 import edu.uoc.epcsd.productcatalog.application.rest.request.CreateProductRequest;
-import edu.uoc.epcsd.productcatalog.application.rest.request.FindProductsByCriteria;
 import edu.uoc.epcsd.productcatalog.application.rest.response.GetProductResponse;
 import edu.uoc.epcsd.productcatalog.domain.Product;
 import edu.uoc.epcsd.productcatalog.domain.service.ProductService;
@@ -54,7 +53,7 @@ public class ProductRESTController {
     public ResponseEntity<Long> createProduct(@RequestBody @NotNull @Valid CreateProductRequest createProductRequest) {
         log.trace("createProduct");
 
-        log.trace("Creating product " + createProductRequest);
+        log.trace("Creating product {}", createProductRequest);
 
         try {
             Long productId = productService.createProduct(Product.builder()
