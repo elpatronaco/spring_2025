@@ -6,11 +6,11 @@ import edu.uoc.epcsd.notification.application.rest.dtos.GetUserResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @Log4j2
 @Service
@@ -31,14 +31,33 @@ public class NotificationServiceImpl implements NotificationService {
         LocalDate now = LocalDate.now();
         String isoDate = now.format(DateTimeFormatter.ISO_DATE);
 
-        var body = new RestTemplate().getForEntity(userServiceUrl, GetUserResponse.class, isoDate).getBody();
-
-        if (body == null) {
-            log.error("Error getting users to alert");
+        // Check if the product is available
+        try {
+            new RestTemplate().getForEntity(productServiceUrl, GetProductResponse.class, productMessage.getProductId()).getBody();
+        } catch (RestClientException e) {
+            log.error("Error getting product details", e);
 
             return;
         }
 
-        log.info("Sending an email to user {}", body.getFullName());
+        try {
+            GetUserResponse[] users = new RestTemplate()
+                    .getForEntity(userServiceUrl, GetUserResponse[].class, isoDate)
+                    .getBody();
+
+            if (users == null) {
+                log.error("Error getting users to alert");
+
+                return;
+            }
+
+            for (GetUserResponse user : users) {
+                // Simulate sending an email
+                log.info("Sending an email to user {}", user.getFullName());
+            }
+        } catch (RestClientException e) {
+            log.error("Error getting users to alert", e);
+        }
+
     }
 }
