@@ -71,12 +71,16 @@ public class AlertRESTController {
 
         try {
             log.trace("Creating alert " + createAlertRequest);
-            Long alertId = alertService.createAlert(Alert.builder()
+
+            Alert alert = Alert.builder()
                     .productId(createAlertRequest.getProductId())
                     .userId(createAlertRequest.getUserId())
                     .from(createAlertRequest.getFrom())
                     .to(createAlertRequest.getTo())
-                    .build());
+                    .build();
+
+            Long alertId = alertService.createAlert(alert);
+
             URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                     .path("/{id}")
                     .buildAndExpand(alertId)
