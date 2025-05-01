@@ -1,0 +1,6 @@
+### Get all digital items
+GET {{users.url}}/digitalItem/allItems
+Accept: application/json
+
+### Get digital item by id
+GET {{users.url}}/digitalItem/

@@ -4,7 +4,6 @@ import edu.uoc.epcsd.user.application.rest.request.CreateDigitalItemRequest;
 import edu.uoc.epcsd.user.domain.DigitalItem;
 import edu.uoc.epcsd.user.domain.DigitalItemStatus;
 import edu.uoc.epcsd.user.domain.service.DigitalItemService;
-import edu.uoc.epcsd.user.domain.service.DigitalSessionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
