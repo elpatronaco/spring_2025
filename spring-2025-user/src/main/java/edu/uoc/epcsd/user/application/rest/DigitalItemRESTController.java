@@ -181,7 +181,7 @@ public class DigitalItemRESTController {
     // and create the method dropDigitalItem(@PathVariable @NotNull Long digitalItemId)
     // which call the corresponding dropDigitalItem method
 
-    @PutMapping("/dropItem/{digitalItemId")
+    @PutMapping("/dropItem/{digitalItemId}")
     public ResponseEntity<Boolean> dropItem(@PathVariable @NotNull Long digitalItemId) {
         log.trace("dropItem");
 
