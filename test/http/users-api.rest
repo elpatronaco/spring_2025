@@ -1,0 +1,26 @@
+### Get all users
+GET {{users.url}}/users
+Accept: application/json
+
+### Get user by ID
+GET {{users.url}}/users/1
+Accept: application/json
+
+### Get user by email
+GET {{users.url}}/users/byEmail/juanpa@gmail.com
+
+### Users to alert
+GET {{users.url}}/users/toAlert
+    ?productId=1
+    &availableOnDate=2025-05-01T14:00:00Z
+
+### Create user
+POST {{users.url}}/users
+Content-Type: application/json
+
+{
+    "fullName": "Pau Colomé",
+    "email": "pcolomed@uoc.edu",
+    "password": "12345678",
+    "phoneNumber": "+34666666666"
+}
