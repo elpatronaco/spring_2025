@@ -1,0 +1,31 @@
+### Get all alerts
+GET {{users.url}}/alerts
+
+> {%
+    const alert = response.body[0]
+
+    client.global.set("alertId", alert.id)
+    client.global.set("alertFromDate", alert.from)
+    client.global.set("alertToDate", alert.to)
+    client.global.set("alertProductId", alert.productId)
+    %}
+
+### Get alert by ID {{alertId}}
+GET {{users.url}}/alerts/{{alertId}}
+
+### Get alerts by product and date
+GET {{users.url}}/alerts/byProductAndDate?productId={{alertProductId}}&availableOnDate={{alertFromDate}}
+
+### Get alerts by user and interval
+GET {{users.url}}/alerts/byUserAndInterval?userId={{userId}}&fromDate={{alertFromDate}}&toDate={{alertToDate}}
+
+### Create alert
+POST {{users.url}}/alerts
+Content-Type: application/json
+
+{
+  "productId": {{alertProductId}},
+  "userId": {{userId}},
+  "from": "23-10-2025",
+  "to": "24-10-2025"
+}
