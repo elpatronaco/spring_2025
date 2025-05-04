@@ -25,26 +25,29 @@ Content-Type: application/json
     "link": "s3://bucket-name/file-name"
 }
 
+> {%
+    client.global.set("newDigitalItemId", response.headers.valueOf("Location").split("/").pop())
+    %}
 ### Update digital item
-PUT {{users.url}}/digitalitem/updateItem/{{digitalItemId}}
+PUT {{users.url}}/digitalitem/updateItem/{{newDigitalItemId}}
 Content-Type: application/json
 
 {
     "digitalSessionId": {{sessionId}},
-    "description": "Test item",
-    "lat": 51,
+    "description": "New name",
+    "lat": 65,
     "lon": 10,
-    "link": "s3://bucket-name/file-name"
+    "link": "s3://bucket-name/new-file-name"
 }
 
 ### Set digital item for review
-PUT {{users.url}}/digitalitem/reviewDigitalItem/{{digitalItemId}}
+PUT {{users.url}}/digitalitem/reviewDigitalItem/{{newDigitalItemId}}
 
 ### Approve digital item
-PUT {{users.url}}/digitalitem/approveDigitalItem/{{digitalItemId}}
+PUT {{users.url}}/digitalitem/approveDigitalItem/{{newDigitalItemId}}
 
 ### Reject digital item
-PUT {{users.url}}/digitalItem/rejectDigitalItem/{{digitalItemId}}
+PUT {{users.url}}/digitalItem/rejectDigitalItem/{{newDigitalItemId}}
 
 ### Drop digital item
-DELETE {{users.url}}/digitalItem/dropItem/{{digitalItemId}}
+DELETE {{users.url}}/digitalItem/dropItem/{{newDigitalItemId}}
