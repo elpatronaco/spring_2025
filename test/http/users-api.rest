@@ -1,4 +1,5 @@
 ### Get all users
+# @name getAllUsers
 GET {{users.url}}/users
 Accept: application/json
 

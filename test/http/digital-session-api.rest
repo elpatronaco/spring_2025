@@ -1,0 +1,43 @@
+### Get all digital sessions
+GET {{users.url}}/digital/allDigital
+Accept: application/json
+
+> {%
+    client.global.set("digitalSessionId", response.body[0].id)
+    client.global.set("digitalSessionName", response.body[0].name)
+    %}
+
+### Get digital session by ID
+GET {{users.url}}/digital/{{digitalSessionId}}
+
+### Get digital session by user
+GET {{users.url}}/digital/digitalByUser?userId={{userId}}
+
+### Create digital session
+POST {{users.url}}/digital/createDigital
+Content-Type: application/json
+
+{
+  "userId": {{userId}},
+  "description": "Test session",
+  "location": "Barcelona, Spain",
+  "link": "s3://bucket-name/video-name"
+}
+
+> {%
+    client.global.set("newDigitalSessionId", response.headers.valueOf("Location").split("/").pop())
+    %}
+
+### Update digital session
+PUT {{users.url}}/digital/updateDigital/{{digitalSessionId}}
+Content-Type: application/json
+
+{
+    "userId": {{userId}},
+    "description": "New name",
+    "location": "Barcelona, Spain",
+    "link": "s3://bucket-name/new-video-name"
+}
+
+### Drop digital session
+DELETE {{users.url}}/digital/removeDigital/{{digitalSessionId}}
