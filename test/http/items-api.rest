@@ -1,0 +1,37 @@
+### Get all items
+GET {{catalog.url}}/items
+
+> {%
+    const item = response.body[0];
+
+    client.global.set("itemSerialNumber", item.serialNumber);
+%}
+
+### Get item by serial number
+GET {{catalog.url}}/items/{{itemSerialNumber}}
+
+### Set item as operational
+PATCH {{catalog.url}}/items/{{itemSerialNumber}}
+Content-Type: application/json
+
+true
+
+> {%
+    client.test("Item is operational", () => {
+        const item = response.body;
+        client.assert(item.status === "OPERATIONAL");
+    });
+%}
+
+### Set item as non-operational
+PATCH {{catalog.url}}/items/{{itemSerialNumber}}
+Content-Type: application/json
+
+false
+
+> {%
+    client.test("Item is non operational", () => {
+        const item = response.body;
+        client.assert(item.status === "NON_OPERATIONAL");
+    });
+%}

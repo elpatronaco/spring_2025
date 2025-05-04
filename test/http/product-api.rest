@@ -1,0 +1,33 @@
+### Get all products
+GET {{catalog.url}}/products
+
+> {%
+    const product = response.body[0];
+
+    client.global.set("productId", product.id);
+    %}
+
+### Get product by id
+GET {{catalog.url}}/products/{{productId}}
+
+### Create product
+POST {{catalog.url}}/products
+Content-Type: application/json
+
+{
+  "name": "Sony A7C II",
+  "description": "Sony A7C II camera with 24-70mm lens",
+  "dailyPrice": 899.99,
+  "brand": "Sony",
+  "model": "A7C II",
+  "categoryId": 1
+}
+
+> {%
+    const createdProductId = response.headers.valueOf("Location").split("/").pop();
+
+    client.global.set("createdProductId", createdProductId);
+    %}
+
+### Drop product
+DELETE {{catalog.url}}/products/{{createdProductId}}
