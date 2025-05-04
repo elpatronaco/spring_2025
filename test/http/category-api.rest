@@ -1,0 +1,33 @@
+### Get all categories
+GET {{catalog.url}}/categories/
+
+> {%
+    const category = response.body.find((category) => typeof category.parentId === "number")
+
+    client.global.set("categoryId", category.id)
+    client.global.set("categoryName", category.name)
+    client.global.set("categoryDescription", category.description)
+    client.global.set("categoryParentId", category.parentId)
+    %}
+
+### Get category by id
+GET {{catalog.url}}/categories/{{categoryId}}
+
+### Find categories by criteria - name
+GET {{catalog.url}}/categories/search?name={{categoryName}}
+
+### Find categories by criteria - description
+GET {{catalog.url}}/categories/search?description={{categoryDescription}}
+
+### Find categories by criteria - parentId
+GET {{catalog.url}}/categories/search?parentId={{categoryParentId}}
+
+### Create category
+POST {{catalog.url}}/categories
+Content-Type: application/json
+
+{
+  "parentCategoryId": {{categoryId}},
+  "name": "Football match",
+  "description": "Football match livestreams and highlights"
+}

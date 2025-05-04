@@ -49,7 +49,7 @@ public class CategoryRESTController {
     // which call the corresponding categoryService method
 
     @GetMapping("/search")
-    public ResponseEntity<List<Category>> findCategoriesByCriteria(@NotNull FindCategoriesByCriteria criteria) {
+    public ResponseEntity<List<Category>> findCategoriesByCriteria(@ModelAttribute @NotNull FindCategoriesByCriteria criteria) {
         log.info("findCategoriesByCriteria");
 
         log.info("Querying categories by criteria {}", criteria);
