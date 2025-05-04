@@ -2,12 +2,17 @@
 GET {{users.url}}/users
 Accept: application/json
 
+> {%
+    client.global.set("userId", response.body[0].id)
+    client.global.set("userEmail", response.body[0].email)
+%}
+
 ### Get user by ID
-GET {{users.url}}/users/1
+GET {{users.url}}/users/{{userId}}
 Accept: application/json
 
 ### Get user by email
-GET {{users.url}}/users/byEmail/juanpa@gmail.com
+GET {{users.url}}/users/byEmail/{{userEmail}}
 
 ### Users to alert
 GET {{users.url}}/users/toAlert

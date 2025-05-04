@@ -2,5 +2,49 @@
 GET {{users.url}}/digitalItem/allItems
 Accept: application/json
 
+> {%
+    client.global.set("digitalItemId", response.body[0].id)
+    client.global.set("sessionId", response.body[0].digitalSessionId)
+    %}
+
 ### Get digital item by id
-GET {{users.url}}/digitalItem/
+GET {{users.url}}/digitalItem/{{digitalItemId}}
+
+### Get digital item by session
+GET {{users.url}}/digitalItem/digitalItemBySession?digitalSessionId={{sessionId}}
+
+### Add digital item
+POST {{users.url}}/digitalItem/addItem
+Content-Type: application/json
+
+{
+    "digitalSessionId": {{sessionId}},
+    "description": "Test item",
+    "lat": 41,
+    "lon": 5,
+    "link": "s3://bucket-name/file-name"
+}
+
+### Update digital item
+PUT {{users.url}}/digitalitem/updateItem/{{digitalItemId}}
+Content-Type: application/json
+
+{
+    "digitalSessionId": {{sessionId}},
+    "description": "Test item",
+    "lat": 51,
+    "lon": 10,
+    "link": "s3://bucket-name/file-name"
+}
+
+### Set digital item for review
+PUT {{users.url}}/digitalitem/reviewDigitalItem/{{digitalItemId}}
+
+### Approve digital item
+PUT {{users.url}}/digitalitem/approveDigitalItem/{{digitalItemId}}
+
+### Reject digital item
+PUT {{users.url}}/digitalItem/rejectDigitalItem/{{digitalItemId}}
+
+### Drop digital item
+DELETE {{users.url}}/digitalItem/dropItem/{{digitalItemId}}
