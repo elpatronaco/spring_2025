@@ -13,12 +13,12 @@ VALUES ('Match Barca - PSG 2024-25', 'http://www.barca.com', 'Barcelona', 1)
 ;
 
 INSERT INTO "digital_item" (description, lat, link, lon, status, digital_session_id)
-VALUES ('First half', 41.3879, 'http://www.barca.com/first_half', 2.1697, 'active', 1)
-     , ('Second half', 41.3879, 'http://www.barca.com/second_half', 2.1697, 'active', 1)
-     , ('First half', 40.4168, 'http://www.madrid.com/first_half', -3.7038, 'active', 2)
-     , ('Second half', 40.4168, 'http://www.madrid.com/second_half', -3.7038, 'active', 2)
-     , ('First half', 51.5074, 'http://www.arsenal.com/first_half', -0.1278, 'active', 3)
-     , ('Second half', 51.5074, 'http://www.arsenal.com/second_half', -0.1278, 'active', 3)
+VALUES ('First half', 41.3879, 'http://www.barca.com/first_half', 2.1697, 'AVAILABLE', 1)
+     , ('Second half', 41.3879, 'http://www.barca.com/second_half', 2.1697, 'AVAILABLE', 1)
+     , ('First half', 40.4168, 'http://www.madrid.com/first_half', -3.7038, 'NOT_AVAILABLE', 2)
+     , ('Second half', 40.4168, 'http://www.madrid.com/second_half', -3.7038, 'NOT_AVAILABLE', 2)
+     , ('First half', 51.5074, 'http://www.arsenal.com/first_half', -0.1278, 'REVIEW_PENDING', 3)
+     , ('Second half', 51.5074, 'http://www.arsenal.com/second_half', -0.1278, 'REVIEW_PENDING', 3)
 ;
 
 INSERT INTO "alert" ("from", product_id, "to", user_id)
