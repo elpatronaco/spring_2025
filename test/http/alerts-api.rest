@@ -4,9 +4,15 @@ GET {{users.url}}/alerts
 > {%
     const alert = response.body[0];
 
+    // convert format "dd-MM-yyyy" to "yyyy-MM-dd"
+    function formatDate(date) {
+        const parts = date.split("-");
+        return `${parts[2]}-${parts[1]}-${parts[0]}`;
+    }
+
     client.global.set("alertId", alert.id);
-    client.global.set("alertFromDate", alert.from);
-    client.global.set("alertToDate", alert.to);
+    client.global.set("alertFromDate", formatDate(alert.from));
+    client.global.set("alertToDate", formatDate(alert.to));
     client.global.set("alertProductId", alert.productId);
     client.global.set("userId", alert.userId);
     %}
@@ -27,6 +33,6 @@ Content-Type: application/json
 {
   "productId": {{alertProductId}},
   "userId": {{userId}},
-  "from": "23-10-2025",
-  "to": "24-10-2025"
+  "from": "2025-10-23",
+  "to": "2025-10-24"
 }

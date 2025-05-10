@@ -14,11 +14,13 @@ Accept: application/json
 
 ### Get user by email
 GET {{users.url}}/users/byEmail/{{userEmail}}
+Accept: application/json
 
 ### Users to alert
 GET {{users.url}}/users/toAlert
     ?productId=1
-    &availableOnDate=2025-05-01T14:00:00Z
+    &availableOnDate=2025-05-01
+Accept: application/json
 
 ### Create user
 POST {{users.url}}/users

@@ -80,7 +80,10 @@ public class DigitalSessionRESTController {
 
             Long digitalSessionId = digitalSessionService.createDigitalSession(session);
 
-            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{digitalSessionId}").buildAndExpand(digitalSessionId).toUri();
+            URI uri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/digital/{digitalSessionId}")
+                    .buildAndExpand(digitalSessionId)
+                    .toUri();
 
             return ResponseEntity.created(uri).body(digitalSessionId);
         } catch (IllegalArgumentException e) {
