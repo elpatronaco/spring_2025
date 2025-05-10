@@ -2,12 +2,13 @@
 GET {{users.url}}/alerts
 
 > {%
-    const alert = response.body[0]
+    const alert = response.body[0];
 
-    client.global.set("alertId", alert.id)
-    client.global.set("alertFromDate", alert.from)
-    client.global.set("alertToDate", alert.to)
-    client.global.set("alertProductId", alert.productId)
+    client.global.set("alertId", alert.id);
+    client.global.set("alertFromDate", alert.from);
+    client.global.set("alertToDate", alert.to);
+    client.global.set("alertProductId", alert.productId);
+    client.global.set("userId", alert.userId);
     %}
 
 ### Get alert by ID {{alertId}}
