@@ -3,8 +3,9 @@ GET {{users.url}}/digital/allDigital
 Accept: application/json
 
 > {%
-    client.global.set("digitalSessionId", response.body[0].id)
-    client.global.set("digitalSessionName", response.body[0].name)
+    client.global.set("digitalSessionId", response.body[0].id);
+    client.global.set("digitalSessionName", response.body[0].name);
+    client.global.set("userId", response.body[0].userId);
     %}
 
 ### Get digital session by ID
@@ -29,7 +30,7 @@ Content-Type: application/json
     %}
 
 ### Update digital session
-PUT {{users.url}}/digital/updateDigital/{{digitalSessionId}}
+PUT {{users.url}}/digital/updateDigital/{{newDigitalSessionId}}
 Content-Type: application/json
 
 {
@@ -40,4 +41,4 @@ Content-Type: application/json
 }
 
 ### Drop digital session
-DELETE {{users.url}}/digital/removeDigital/{{digitalSessionId}}
+DELETE {{users.url}}/digital/removeDigital/{{newDigitalSessionId}}

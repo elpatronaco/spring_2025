@@ -26,10 +26,10 @@ Content-Type: application/json
 }
 
 > {%
-    client.global.set("newDigitalItemId", response.headers.valueOf("Location").split("/").pop())
+    client.global.set("newDigitalItemId", response.body.toString())
     %}
 ### Update digital item
-PUT {{users.url}}/digitalitem/updateItem/{{newDigitalItemId}}
+PUT {{users.url}}/digitalItem/updateItem/{{newDigitalItemId}}
 Content-Type: application/json
 
 {
@@ -41,10 +41,10 @@ Content-Type: application/json
 }
 
 ### Set digital item for review
-PUT {{users.url}}/digitalitem/reviewDigitalItem/{{newDigitalItemId}}
+PUT {{users.url}}/digitalItem/reviewDigitalItem/{{newDigitalItemId}}
 
 ### Approve digital item
-PUT {{users.url}}/digitalitem/approveDigitalItem/{{newDigitalItemId}}
+PUT {{users.url}}/digitalItem/approveDigitalItem/{{newDigitalItemId}}
 
 ### Reject digital item
 PUT {{users.url}}/digitalItem/rejectDigitalItem/{{newDigitalItemId}}
